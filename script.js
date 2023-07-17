@@ -1,25 +1,58 @@
 function initializeChatWidget() {
-    var chatWidgetContainer = document.createElement('div');
-    chatWidgetContainer.id = 'chat-widget';
 
-    var chatWidgetHeader = document.createElement('div');
-    chatWidgetHeader.classList.add('chat-widget-header');
-    chatWidgetHeader.textContent = 'Chat Widget';
+  var mainContainer = document.createElement('div');
+  mainContainer.id = 'main-container';
 
-    var chatWidgetBody = document.createElement('div');
-    chatWidgetBody.classList.add('chat-widget-body');
+  var iframe = document.createElement('iframe');
+  
+  mainContainer.appendChild(iframe);
 
-    var chatWidgetInput = document.createElement('input');
-    chatWidgetInput.classList.add('chat-widget-input');
-    chatWidgetInput.type = 'text';
-    chatWidgetInput.placeholder = 'Type your message...';
+  document.body.appendChild(mainContainer);
 
-    chatWidgetContainer.appendChild(chatWidgetHeader);
-    chatWidgetContainer.appendChild(chatWidgetBody);
-    chatWidgetContainer.appendChild(chatWidgetInput);
+  var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-    var style = document.createElement('style');
-    style.textContent = `
+  var chatWidgetContainer = iframeDocument.createElement('div');
+  chatWidgetContainer.id = 'chat-widget';
+
+  var chatWidgetHeader = iframeDocument.createElement('div');
+  chatWidgetHeader.classList.add('chat-widget-header');
+  chatWidgetHeader.textContent = 'Chat Widget';
+
+  var chatWidgetBody = iframeDocument.createElement('div');
+  chatWidgetBody.classList.add('chat-widget-body');
+
+  var chatWidgetInput = iframeDocument.createElement('input');
+  chatWidgetInput.classList.add('chat-widget-input');
+  chatWidgetInput.type = 'text';
+  chatWidgetInput.placeholder = 'Type your message...';
+
+  chatWidgetContainer.appendChild(chatWidgetHeader);
+  chatWidgetContainer.appendChild(chatWidgetBody);
+  chatWidgetContainer.appendChild(chatWidgetInput);
+
+  let mainStyle = document.createElement('style');
+  mainStyle.textContent = `
+  #main-container {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  #main-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: transparent;
+  }`
+
+  document.head.appendChild(mainStyle);
+
+  var style = iframeDocument.createElement('style');
+  style.textContent = `
       #chat-widget {
         position: fixed;
         bottom: 95px;
@@ -76,45 +109,45 @@ function initializeChatWidget() {
       }
     `;
 
-    document.head.appendChild(style);
+  iframeDocument.head.appendChild(style);
 
-    document.body.appendChild(chatWidgetContainer);
+  iframeDocument.body.appendChild(chatWidgetContainer);
 
-    let chatWidgetCircle = document.createElement('div');
-    chatWidgetCircle.classList.add('chat-widget-circle');
-    chatWidgetCircle.textContent = 'Chat';
+  let chatWidgetCircle = iframeDocument.createElement('div');
+  chatWidgetCircle.classList.add('chat-widget-circle');
+  chatWidgetCircle.textContent = 'Chat';
 
-    document.body.appendChild(chatWidgetCircle);
+  iframeDocument.body.appendChild(chatWidgetCircle);
 
-    chatWidgetCircle.addEventListener('click', function () {
-        let chatWidgetContainerStyle = window.getComputedStyle(chatWidgetContainer);
-        if (chatWidgetContainerStyle.display === 'none') {
-            chatWidgetContainer.style.display = 'flex';
-        } else {
-            chatWidgetContainer.style.display = 'none';
-        }
-    });
-
-    chatWidgetInput.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            var message = chatWidgetInput.value;
-            displayMessage(message);
-            chatWidgetInput.value = '';
-
-            scrollToBottom();
-        }
-    });
-
-    function displayMessage(message) {
-        var messageElement = document.createElement('p');
-        messageElement.textContent = message;
-        chatWidgetBody.appendChild(messageElement);
+  chatWidgetCircle.addEventListener('click', function () {
+    let chatWidgetContainerStyle = window.getComputedStyle(chatWidgetContainer);
+    if (chatWidgetContainerStyle.display === 'none') {
+      chatWidgetContainer.style.display = 'flex';
+    } else {
+      chatWidgetContainer.style.display = 'none';
     }
+  });
 
-    function scrollToBottom() {
-        chatWidgetBody.scrollTop = chatWidgetBody.scrollHeight;
+  chatWidgetInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      var message = chatWidgetInput.value;
+      displayMessage(message);
+      chatWidgetInput.value = '';
+
+      scrollToBottom();
     }
+  });
+
+  function displayMessage(message) {
+    var messageElement = iframeDocument.createElement('p');
+    messageElement.textContent = message;
+    chatWidgetBody.appendChild(messageElement);
+  }
+
+  function scrollToBottom() {
+    chatWidgetBody.scrollTop = chatWidgetBody.scrollHeight;
+  }
 }
 
 initializeChatWidget();
