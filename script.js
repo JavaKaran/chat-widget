@@ -205,6 +205,7 @@ function initializeChatWidget() {
     transition: all 0.2s ease-in-out;
     opacity: 0;
     visibility: hidden;
+    z-index: 150;
   }
 
   #iframe-container.show {
