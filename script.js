@@ -184,10 +184,11 @@ function initializeChatWidget() {
   mainStyle.textContent = `
   #main-container {
     width: 350px;
-    height: 520px;
-    position: absolute;
+    height: 620px;
+    position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 999;
   }
 
   #iframe-container {
@@ -205,7 +206,6 @@ function initializeChatWidget() {
     transition: all 0.2s ease-in-out;
     opacity: 0;
     visibility: hidden;
-    z-index: 150;
   }
 
   #iframe-container.show {
@@ -233,6 +233,10 @@ function initializeChatWidget() {
 
   #bot-chat:hover {
     transform: scale(1.1);
+  }
+
+  #bot-chat:focus {
+    outline: none;
   }
   `
 
