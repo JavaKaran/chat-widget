@@ -185,7 +185,7 @@ function initializeChatWidget() {
   #main-container {
     width: 350px;
     height: 620px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     right: 0;
     z-index: 999;
