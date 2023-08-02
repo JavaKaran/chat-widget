@@ -1,3 +1,5 @@
+let domain = window.location.host;
+
 function initializeChatWidget() {
 
   var mainContainer = document.createElement('div');
@@ -110,12 +112,10 @@ function initializeChatWidget() {
   })
 }
 
-let sites = ['demo.noesis.dev', 'chat-widget-plum.vercel.app'];
+initializeChatWidget();
+// let sites = ['demo.noesis.dev', 'chat-widget-plum.vercel.app'];
 
-let domain = window.location.host;
-
-window.addEventListener('DOMContentLoaded', () => {
-  if(sites.includes(domain)){
-    initializeChatWidget();
-  }
-})
+// window.addEventListener('DOMContentLoaded', () => {
+//   if(sites.includes(domain)){
+//   }
+// })
