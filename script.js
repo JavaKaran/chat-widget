@@ -112,10 +112,10 @@ function initializeChatWidget() {
   })
 }
 
-initializeChatWidget();
-// let sites = ['demo.noesis.dev', 'chat-widget-plum.vercel.app'];
+let sites = ['demo.noesis.dev', 'chat-widget-plum.vercel.app'];
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   if(sites.includes(domain)){
-//   }
-// })
+window.addEventListener('DOMContentLoaded', () => {
+  if(sites.includes(domain)){
+    initializeChatWidget();
+  }
+})
