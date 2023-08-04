@@ -18,6 +18,7 @@ function initializeChatWidget() {
   const widgetUrl = `https://brainstormer-chat.vercel.app/?domain=${domain}`;
 
   let iframeContainer = document.createElement('div');
+  iframeContainer.classList.add("container");
   
   let iframe = document.createElement('iframe');
   iframe.id = 'iframe-container';
@@ -36,6 +37,10 @@ function initializeChatWidget() {
     bottom: 0;
     right: 0;
     z-index: 999;
+  }
+
+  .container {
+    width: 350px;
   }
 
   #iframe-container {
