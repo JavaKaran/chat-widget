@@ -114,7 +114,11 @@ function initializeChatWidget() {
   // for demo.noesis.dev change to stagingchat.noesis.dev
 
   iframe.addEventListener('load', () => {
-    iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
+    try{
+      iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
+    } catch (err){
+      console.error("error",err);
+    }
   })
 }
 
