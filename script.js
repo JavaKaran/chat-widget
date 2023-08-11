@@ -115,8 +115,7 @@ function initializeChatWidget() {
 
   iframe.addEventListener('load', () => {
     try{
-      iframe.contentWindow.postMessage("hello",'https://brainstormer-chat.vercel.app');
-      console.log("message poseted")
+      iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
     } catch (err){
       console.error("error",err);
     }
