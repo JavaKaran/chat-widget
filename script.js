@@ -1,4 +1,5 @@
 let domain = window.location.host;
+let script = document.currentScript;
 
 function initializeChatWidget() {
 
@@ -15,15 +16,17 @@ function initializeChatWidget() {
 
   mainContainer.appendChild(chatButton);
 
-  const widgetUrl = `https://brainstormer-chat.vercel.app/?domain=${domain}`;
+  let bot = script.getAttribute("bot-id");
+
+  const widgetUrl = `https://brainstormer-chat.vercel.app/?domain=${domain}&bot=${bot}`;
 
   let iframeContainer = document.createElement('div');
   iframeContainer.classList.add("container");
-  
+
   let iframe = document.createElement('iframe');
   iframe.id = 'iframe-container';
   iframe.src = widgetUrl;
-  
+
   iframeContainer.appendChild(iframe)
 
   mainContainer.appendChild(iframeContainer);
@@ -117,10 +120,33 @@ function initializeChatWidget() {
   })
 }
 
-let sites = ['demo.noesis.dev', 'chat-widget-plum.vercel.app'];
+function verifyDomain() {
+
+  let headersList = {
+    "Api-token": "BLiEUe64EC4Wj7HPYPXa"
+  }
+
+  let bodyContent = JSON.stringify({
+    "domain": domain
+  });
+
+  fetch("https://botnew.brainstormer.io/widget_verifier", {
+    method: "POST",
+    headers: headersList,
+    body: bodyContent
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "success") {
+        initializeChatWidget();
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+}
 
 window.addEventListener('DOMContentLoaded', () => {
-  if(sites.includes(domain)){
-    initializeChatWidget();
-  }
+  verifyDomain();
 })
