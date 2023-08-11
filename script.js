@@ -18,7 +18,7 @@ function initializeChatWidget() {
 
   let bot = script.getAttribute("bot-id");
 
-  const widgetUrl = `https://brainstormer-chat.vercel.app/?domain=${domain}&bot=${bot}`;
+  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}`;
 
   let iframeContainer = document.createElement('div');
   iframeContainer.classList.add("container");
@@ -110,13 +110,11 @@ function initializeChatWidget() {
     }
   });
 
-  iframe.addEventListener('load', () => {
-    window.addEventListener("message", evt => {
-      if (evt.origin !== "https://chat-widget-plum.vercel.app/") {
-        return;
-      }
-    });
+  // change the target origin on the basis of bot used
+  // for demo.noesis.dev change to stagingchat.noesis.dev
 
+  iframe.addEventListener('load', () => {
+    iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
   })
 }
 
