@@ -109,17 +109,6 @@ function initializeChatWidget() {
       chatButton.innerHTML = chatIcon;
     }
   });
-
-  // change the target origin on the basis of bot used
-  // for demo.noesis.dev change to stagingchat.noesis.dev
-
-  // iframe.addEventListener('load', () => {
-  //   try{
-  //     iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
-  //   } catch (err){
-  //     console.error("error",err);
-  //   }
-  // })
 }
 
 function verifyDomain() {
