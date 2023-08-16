@@ -1,6 +1,8 @@
 let domain = window.location.host;
 let script = document.currentScript;
 
+let bot = script.getAttribute("bot-id");
+
 function initializeChatWidget() {
 
   var mainContainer = document.createElement('div');
@@ -15,8 +17,6 @@ function initializeChatWidget() {
   chatButton.innerHTML = chatIcon;
 
   mainContainer.appendChild(chatButton);
-
-  let bot = script.getAttribute("bot-id");
 
   const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}`;
 
@@ -139,7 +139,7 @@ function verifyDomain() {
   })
     .then(response => response.json())
     .then(data => {
-      if (data.status === "success") {
+      if (data.status === "success" && bot) {
         initializeChatWidget();
       }
     })
