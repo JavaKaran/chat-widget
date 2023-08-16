@@ -18,7 +18,7 @@ function initializeChatWidget() {
 
   mainContainer.appendChild(chatButton);
 
-  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}`;
+  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}&domain=${domain}`;
 
   let iframeContainer = document.createElement('div');
   iframeContainer.classList.add("container");
@@ -113,13 +113,13 @@ function initializeChatWidget() {
   // change the target origin on the basis of bot used
   // for demo.noesis.dev change to stagingchat.noesis.dev
 
-  iframe.addEventListener('load', () => {
-    try{
-      iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
-    } catch (err){
-      console.error("error",err);
-    }
-  })
+  // iframe.addEventListener('load', () => {
+  //   try{
+  //     iframe.contentWindow.postMessage(`${domain}`,'https://brainstormer-chat.vercel.app');
+  //   } catch (err){
+  //     console.error("error",err);
+  //   }
+  // })
 }
 
 function verifyDomain() {
