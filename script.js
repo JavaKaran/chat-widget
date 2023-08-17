@@ -110,7 +110,7 @@ function initializeChatWidget() {
     }
   });
 
-  iframe.addEventListener('load', function(){
+  window.addEventListener('load', function(){
     iframe.contentWindow.postMessage("hello","*")
   })
 }
