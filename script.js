@@ -29,10 +29,6 @@ function initializeChatWidget() {
 
   iframeContainer.appendChild(iframe);
 
-  // let iframeModal = document.querySelector("#iframe-container");
-
-  // iframe.contentWindow.postMessage("hello","*")
-
   mainContainer.appendChild(iframeContainer);
 
   document.body.appendChild(mainContainer);
@@ -115,12 +111,9 @@ function initializeChatWidget() {
   });
 
   iframe.addEventListener('load', function () {
-    console.log("laoded");
     setTimeout(() => {
-      iframe.contentWindow.postMessage("hello 1", "*")
+      iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app")
     }, 100)
-    // iframe.contentWindow.postMessage("hello 2", "*")
-    // iframe.contentWindow.postMessage("hello 3", "https://brainstormer-chat.vercel.app")
   })
 }
 
