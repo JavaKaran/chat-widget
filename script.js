@@ -110,10 +110,10 @@ function initializeChatWidget() {
     }
   });
 
-  iframe.addEventListener('load', function () {
-    setTimeout(() => {
+  iframe.contentWindow.addEventListener('load', function () {
+    // setTimeout(() => {
       iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app")
-    }, 100)
+    // }, 100)
   })
 }
 
