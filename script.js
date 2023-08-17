@@ -27,7 +27,11 @@ function initializeChatWidget() {
   iframe.id = 'iframe-container';
   iframe.src = widgetUrl;
 
-  iframeContainer.appendChild(iframe)
+  iframeContainer.appendChild(iframe);
+
+  let iframeModal = document.querySelector("#iframe-container");
+
+  iframeModal.contentWindow.postMessage("hello","*")
 
   mainContainer.appendChild(iframeContainer);
 
@@ -110,9 +114,8 @@ function initializeChatWidget() {
     }
   });
 
-  window.addEventListener('load', function(){
-    iframe.contentWindow.postMessage("hello","*")
-  })
+  // window.addEventListener('load', function(){
+  // })
 }
 
 function verifyDomain() {
