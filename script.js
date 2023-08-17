@@ -115,7 +115,12 @@ function initializeChatWidget() {
   });
 
   iframe.addEventListener('load', function(){
-    console.log("iframe loaded")
+    console.log("laoded");
+    setTimeout(() => {
+      iframe.contentWindow.postMessage("hello 1", "*")
+    }, 1000)
+    iframe.contentWindow.postMessage("hello 2", "*")
+    iframe.contentWindow.postMessage("hello 3", "https://brainstormer-chat.vercel.app")
   })
 }
 
