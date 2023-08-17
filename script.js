@@ -113,6 +113,10 @@ function initializeChatWidget() {
       chatButton.innerHTML = chatIcon;
     }
   });
+
+  iframe.addEventListener('load', function(){
+    console.log("iframe loaded")
+  })
 }
 
 function verifyDomain() {
