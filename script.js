@@ -111,7 +111,7 @@ function initializeChatWidget() {
   });
 
   iframe.addEventListener('load', function () {
-    console.log("loaded", iframe.contentWindow, iframe.contentDocument);
+    console.log("loaded", iframe.contentWindow, iframe.contentWindow.document);
     if (iframe.contentDocument.readyState === "interactive" || iframe.contentDocument.readyState === "complete"){
       console.log("complete")
       iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app")
