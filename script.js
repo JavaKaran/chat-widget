@@ -114,7 +114,7 @@ function initializeChatWidget() {
     }
   });
 
-  window.addEventListener('load', function(){
+  document.addEventListener('load', function(){
     console.log("loaded");
   })
 }
