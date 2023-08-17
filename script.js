@@ -113,10 +113,6 @@ function initializeChatWidget() {
       chatButton.innerHTML = chatIcon;
     }
   });
-
-  window.addEventListener('DOMContentLoaded', function(){
-    console.log("loaded");
-  })
 }
 
 function verifyDomain() {
@@ -138,6 +134,10 @@ function verifyDomain() {
     .then(data => {
       if (data.status === "success" && bot) {
         initializeChatWidget();
+
+        let iframe = document.querySelector("#iframe-container");
+
+        iframe.contentWindow.postMessage("hello","*")
       }
     })
     .catch(error => {
