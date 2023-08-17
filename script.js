@@ -29,9 +29,9 @@ function initializeChatWidget() {
 
   iframeContainer.appendChild(iframe);
 
-  let iframeModal = document.querySelector("#iframe-container");
+  // let iframeModal = document.querySelector("#iframe-container");
 
-  iframeModal.contentWindow.postMessage("hello","*")
+  iframe.contentWindow.postMessage("hello","*")
 
   mainContainer.appendChild(iframeContainer);
 
