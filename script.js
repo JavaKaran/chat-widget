@@ -134,10 +134,7 @@ function verifyDomain() {
     .then(data => {
       if (data.status === "success" && bot) {
         initializeChatWidget();
-
-        let iframe = document.querySelector("#iframe-container");
-
-        iframe.contentWindow.postMessage("hello","*")
+        console.log("loading")
       }
     })
     .catch(error => {
