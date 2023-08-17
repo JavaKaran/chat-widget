@@ -110,9 +110,13 @@ function initializeChatWidget() {
     }
   });
 
-  iframe.contentWindow.addEventListener('load', function () {
-    // setTimeout(() => {
+  iframe.addEventListener('load', function () {
+    console.log("loaded", iframe.contentWindow, iframe.contentDocument);
+    if (iframe.contentDocument.readyState === "interactive" || iframe.contentDocument.readyState === "complete"){
+      console.log("complete")
       iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app")
+    }
+    // setTimeout(() => {
     // }, 100)
   })
 }
