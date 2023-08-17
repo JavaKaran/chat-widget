@@ -115,23 +115,12 @@ function initializeChatWidget() {
   });
 
   iframe.addEventListener('load', function () {
-    // console.log("laoded");
-    // setTimeout(() => {
-    //   iframe.contentWindow.postMessage("hello 1", "*")
-    // }, 1000)
+    console.log("laoded");
+    setTimeout(() => {
+      iframe.contentWindow.postMessage("hello 1", "*")
+    }, 100)
     // iframe.contentWindow.postMessage("hello 2", "*")
     // iframe.contentWindow.postMessage("hello 3", "https://brainstormer-chat.vercel.app")
-
-    iframe.contentWindow.addEventListener('message', function (event) {
-      if (event.data === "readyForMessages") {
-        // This means the iframe's content is ready to receive messages
-        iframe.contentWindow.postMessage("hello 2", "*");
-        iframe.contentWindow.postMessage("hello 3", "https://brainstormer-chat.vercel.app");
-      }
-    });
-
-    // Post a message to the iframe to signal it to get ready for messages
-    iframe.contentWindow.postMessage("readyForMessages", "*");
   })
 }
 
