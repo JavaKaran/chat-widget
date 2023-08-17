@@ -18,7 +18,7 @@ function initializeChatWidget() {
 
   mainContainer.appendChild(chatButton);
 
-  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}&domain=${domain}`;
+  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}`;
 
   let iframeContainer = document.createElement('div');
   iframeContainer.classList.add("container");
@@ -136,7 +136,6 @@ function verifyDomain() {
     .then(data => {
       if (data.status === "success" && bot) {
         initializeChatWidget();
-        console.log("loading")
       }
     })
     .catch(error => {
