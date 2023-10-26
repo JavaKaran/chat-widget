@@ -73,7 +73,7 @@ function initializeChatWidget() {
     bottom: 20px;
     right: 20px;
     padding: 10px;
-    background-color: #2c2d98;
+    background-color: #912d2a;
     border: none;
     border-radius: 50%;
     cursor: pointer;
