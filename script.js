@@ -3,6 +3,8 @@ let script = document.currentScript;
 
 let bot = script.getAttribute("bot-id");
 
+let primaryColor = script.getAttribute("primary-color");
+
 function initializeChatWidget() {
 
   var mainContainer = document.createElement('div');
@@ -16,9 +18,12 @@ function initializeChatWidget() {
   chatButton.id = 'bot-chat';
   chatButton.innerHTML = chatIcon;
 
+  var userLanguage = (navigator.language || navigator.userLanguage).split('-')[0];
+
   mainContainer.appendChild(chatButton);
 
-  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}`;
+  const widgetUrl = `https://brainstormer-chat.vercel.app/?bot=${bot}&domain=${domain}&language=${userLanguage}&primary=${primaryColor}`;
+  // const widgetUrl = `https://iferb.brainstormer.dev/?bot=${bot}&domain=${domain}&language=${userLanguage}&primary=${primaryColor}`;
 
   let iframeContainer = document.createElement('div');
   iframeContainer.classList.add("container");
@@ -27,7 +32,7 @@ function initializeChatWidget() {
   iframe.id = 'iframe-container';
   iframe.src = widgetUrl;
 
-  iframeContainer.appendChild(iframe);
+  iframeContainer.appendChild(iframe)
 
   mainContainer.appendChild(iframeContainer);
 
@@ -39,7 +44,7 @@ function initializeChatWidget() {
     position: fixed;
     bottom: 0;
     right: 0;
-    z-index: 999;
+    z-index: 9999;
   }
 
   .container {
@@ -58,7 +63,7 @@ function initializeChatWidget() {
     display: block;
     box-sizing: border-box;
     box-shadow: 0 5px 20px rgba(0,0,0,.1);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-out;
     opacity: 0;
     visibility: hidden;
   }
@@ -73,7 +78,7 @@ function initializeChatWidget() {
     bottom: 20px;
     right: 20px;
     padding: 10px;
-    background-color: #912d2a;
+    background-color: #${primaryColor};
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -112,7 +117,7 @@ function initializeChatWidget() {
 
   iframe.addEventListener('load', function () {
     setTimeout(() => {
-      iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app")
+      iframe.contentWindow.postMessage(`${domain}`, "https://brainstormer-chat.vercel.app/")
     }, 100)
   })
 }
@@ -120,14 +125,14 @@ function initializeChatWidget() {
 function verifyDomain() {
 
   let headersList = {
-    "Api-token": "BLiEUe64EC4Wj7HPYPXa"
+    "Api-token": "Vyhn1VFWqwM2LLvnaPpG"
   }
 
   let bodyContent = JSON.stringify({
     "domain": domain
   });
 
-  fetch("https://botnew.brainstormer.io/widget_verifier", {
+  fetch("https://bot.brainstormer.dev/widget_verifier", {
     method: "POST",
     headers: headersList,
     body: bodyContent
